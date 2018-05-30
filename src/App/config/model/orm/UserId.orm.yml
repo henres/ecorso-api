@@ -1,0 +1,9 @@
+Ecorso\User\UserId:
+    type: entity
+    schema: ecorso # The schema the table lies in, for platforms that support schemas (Optional, >= 2.5)
+    id:
+        id:
+            type: string
+            length: 50
+            generator:
+                strategy: UUID

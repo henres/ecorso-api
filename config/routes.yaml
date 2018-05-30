@@ -1,0 +1,3 @@
+index:
+   resource: ../src/UI/Api/config/routes/
+   type: directory

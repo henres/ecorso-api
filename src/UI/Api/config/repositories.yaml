@@ -1,0 +1,5 @@
+services:
+    ecorso.repository.user:
+        alias:
+            'ecorso.storage.notification.doctrine_repository'
+        public: true

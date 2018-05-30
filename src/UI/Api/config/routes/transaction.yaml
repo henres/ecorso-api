@@ -1,0 +1,7 @@
+ecorso_api_transaction_list:
+    path: /transactions
+    controller: Ecorso\UI\Api\Controller\UserController::list
+
+ecorso_api_transaction_item:
+    path: transactions/{transactionid}
+    controller: Ecorso\UI\Api\Controller\UserController::item

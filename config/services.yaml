@@ -1,0 +1,34 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+
+imports:
+  - { resource: ../src/App/config/services.yaml }
+  - { resource: ../src/UI/Api/config/services.yaml }
+
+services:
+    # default configuration for user in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your user.
+        autoconfigure: true # Automatically registers your user as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused user; this also means
+                            # fetching user directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as user
+    # this creates a service per class whose id is the fully-qualified class name
+    Ecorso\App\:
+        resource: '../src/App/*'
+        exclude: '../src/App/{Domain,Entity,Migrations,Tests,Kernel.php}'
+
+    # makes classes in src/ available to be used as user
+    # this creates a service per class whose id is the fully-qualified class name
+    Ecorso\UI\Api\:
+        resource: '../src/UI/Api'
+
+    # controllers are imported separately to make sure user can be injected
+    # as action arguments even if you don't extend any base controller class
+    Ecorso\UI\Api\Controller\:
+        resource: '../src/UI/Api/Controller'
+        tags: ['controller.service_arguments']
