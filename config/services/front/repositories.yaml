@@ -1,0 +1,21 @@
+services:
+    ecorso.api.client:
+        alias: 'eight_points_guzzle.client.hermes'
+
+    ecorso.api.base_repository:
+        abstract: true
+        arguments:
+            - '@hermes.client'
+            - '@hermes.router.default'
+            - '@serializer'
+
+    front.ecorso.repository.user:
+        class:     'Ecorso\Front\Repository\UserRepository'
+        parent:    'ecorso.api.base_repository'
+#        decorates: 'ecorso.api.user.chain_repository'
+#        decoration_priority: 10
+        arguments:
+            - '@libphonenumber.phone_number_util'
+            - '@event_dispatcher'
+        public: false
+

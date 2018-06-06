@@ -1,10 +1,10 @@
 <?php
 
-namespace Ecorso\App\Repository\Doctrine\User;
+namespace Ecorso\App\Repository\Doctrine\Wallet;
 
 use Doctrine\ORM\EntityRepository;
 use Ecorso\Wallet\Wallet;
-use Ecorso\Wallet\WalletUserCollection;
+use Ecorso\Wallet\WalletCollection;
 use Ecorso\Wallet\WalletRepositoryInterface;
 
 class WalletRepository extends EntityRepository implements WalletRepositoryInterface
@@ -15,20 +15,20 @@ class WalletRepository extends EntityRepository implements WalletRepositoryInter
         return $queryBuild->getQuery()->getOneOrNullResult();
     }
 
-    public function findAll(): UserCollection {
+    public function findAll(): WalletCollection {
         $queryBuild = $this->createQueryBuilder('u');
-        return new UserCollection($queryBuild->getQuery()->getResult());
+        return new WalletCollection($queryBuild->getQuery()->getResult());
     }
 
-    public function add(User $user): void
+    public function add(Wallet $wallet): void
     {
-        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->persist($wallet);
         $this->getEntityManager()->flush();
     }
 
-    public function remove(User $user): void
+    public function remove(Wallet $wallet): void
     {
-        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->remove($wallet);
         $this->getEntityManager()->flush();
     }
 }

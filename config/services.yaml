@@ -5,7 +5,8 @@ parameters:
 
 imports:
   - { resource: ../src/App/config/services.yaml }
-  - { resource: ../src/UI/Api/config/services.yaml }
+  - { resource: services/api/services.yaml }
+  - { resource: services/front/services.yaml }
 
 services:
     # default configuration for user in *this* file

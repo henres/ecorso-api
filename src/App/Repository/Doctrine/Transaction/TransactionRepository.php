@@ -1,32 +1,32 @@
 <?php
 
-namespace Ecorso\App\Repository\Doctrine\User;
+namespace Ecorso\App\Repository\Doctrine\Transaction;
 
 use Doctrine\ORM\EntityRepository;
-use Ecorso\User\User;
-use Ecorso\User\UserCollection;
-use Ecorso\User\WalletRepositoryInterface;
+use Ecorso\Transaction\Transaction;
+use Ecorso\Transaction\TransactionCollection;
+use Ecorso\Transaction\TransactionRepositoryInterface;
 
-class UserRepository extends EntityRepository implements WalletRepositoryInterface
+class TransactionRepository extends EntityRepository implements TransactionRepositoryInterface
 {
-    public function find($id): User {
+    public function find($id): Transaction {
         $queryBuild = $this->createQueryBuilder('u')
             ->where('u.id = ?1');
         return $queryBuild->getQuery()->getOneOrNullResult();
     }
 
-    public function findAll(): UserCollection {
+    public function findAll(): TransactionCollection {
         $queryBuild = $this->createQueryBuilder('u');
         return new UserCollection($queryBuild->getQuery()->getResult());
     }
 
-    public function add(User $user): void
+    public function add(Transaction $user): void
     {
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
 
-    public function remove(User $user): void
+    public function remove(Transaction $user): void
     {
         $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();

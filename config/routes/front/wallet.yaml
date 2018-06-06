@@ -1,0 +1,7 @@
+ecorso_api_wallet_list:
+    path: /wallets
+    controller: Ecorso\UI\Api\Controller\WalletController::list
+
+ecorso_api_wallet_item:
+    path: /wallets/{userid}
+    controller: Ecorso\UI\Api\Controller\WalletController::item

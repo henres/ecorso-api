@@ -1,0 +1,3 @@
+services:
+    ecorso.front.fake_user_provider:
+        class: 'Ecorso\UI\Front\Security\FakeUserProvider'

@@ -1,0 +1,8 @@
+ecorso_front_users_list:
+    path: /me
+    controller: Ecorso\UI\Front\Controller\ProfilController::me
+
+ecorso_front_users_item:
+    path: /me/update
+    controller: Ecorso\UI\Front\Controller\ProfilController::item
+    methods: ['GET', 'POST']

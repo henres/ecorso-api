@@ -2,21 +2,20 @@
 
 namespace Ecorso\UI\Api\Controller;
 
+use Ecorso\User\Event\UserRegistered;
 use Ecorso\Wallet\Transaction;
 use Ecorso\Wallet\TransactionCollection;
 use Ecorso\User\UserCollection;
 use Ecorso\User\UserId;
 use Ecorso\Wallet\TransactionId;
-use Ecorso\Wallet\UserWallet;
-use Ecorso\Wallet\WalletCollection;
-use Ecorso\Wallet\WalletId;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Ecorso\User\User;
 use Symfony\Component\Serializer\Serializer;
-use Money\Money;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
 
 class UserController extends Controller
 {
@@ -40,5 +39,17 @@ class UserController extends Controller
         ]);
 
         return new Response($serializer->serialize($userCollection->get($userid), 'json'));
+    }
+
+    public function new()
+    {
+        $user = User::register(
+            "1",
+            "dupond",
+            "dupond@dupond.com"
+        );
+
+        $event = new UserRegistered($user);
+        $this->get("event_dispatcher")->dispatch(UserRegistered::NAME, $event);
     }
 }

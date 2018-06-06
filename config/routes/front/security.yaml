@@ -1,0 +1,3 @@
+ecorso_front_login:
+    path: login
+    controller: Ecorso\UI\Front\Controller\SecurityController::login
