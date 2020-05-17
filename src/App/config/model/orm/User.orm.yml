@@ -1,0 +1,29 @@
+Ecorso\User\User:
+    type: entity
+    repositoryClass: Ecorso\App\Repository\Doctrine\User\UserRepository
+    schema: ecorso # The schema the table lies in, for platforms that support schemas (Optional, >= 2.5)
+    indexes:
+        name_index:
+            columns: [ name ]
+    id:
+        id:
+            associationKey: true
+    fields:
+        name:
+            type: string
+            length: 50
+        email:
+            type: string
+            length: 32
+            column: user_email
+            unique: true
+            options:
+                fixed: true
+                comment: User's email address
+    oneToOne:
+        id:
+            targetEntity: UserId
+            joinColumn:
+                name: id
+                referencedColumnName: id
+                onDelete: CASCADE

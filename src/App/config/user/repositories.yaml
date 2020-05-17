@@ -1,0 +1,7 @@
+services:
+    ecorso.storage.notification.doctrine_repository:
+        class: 'Ecorso\App\Repository\Doctrine\User\UserRepository'
+        factory: ['@doctrine.orm.entity_manager', 'getRepository']
+        arguments:
+            - 'Ecorso\User\User'
+        public: false

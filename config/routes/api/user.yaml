@@ -1,0 +1,7 @@
+ecorso_api_users_list:
+    path: /users
+    controller: Ecorso\UI\Api\Controller\UserController::list
+
+ecorso_api_users_item:
+    path: /users/{userid}
+    controller: Ecorso\UI\Api\Controller\UserController::item

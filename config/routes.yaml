@@ -1,0 +1,9 @@
+api_index:
+    resource: routes/api
+    type: directory
+    prefix: /api
+
+front_index:
+    resource: routes/front
+    type: directory
+    prefix: /
